@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 400px;
+            margin: 20px auto;
+        }
+
+        ul {
+            height: 30px;
+            width: 400px;
+            background-color: aqua;
+        }
+
+        ul li {
+            float: left;
+            height: 30px;
+            width: 50px;
+            text-align: center;
+            line-height: 30px;
+            color: black;
+            list-style: none;
+            cursor: pointer;
+        }
+
+        ul li.active {
+            margin-top: -1px;
+            height: 30px;
+            border-top: 2px solid red;
+            line-height: 28px;
+            background-color: white;
+        }
+
+        #box div {
+            width: 400px;
+            height: 200px;
+            background-color: aquamarine;
+            text-align: center;
+            display: none;
+        }
+
+        #box div.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul id="ul">
+        <li class="active">111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <div class="class1 active">111111111111</div>
+    <div class="class2">222222222222</div>
+    <div class="class3">333333333333</div>
+</div>
+<script>
+    var oBox = document.getElementById('box'),
+        oUl = document.getElementById('ul'),
+        oLi = oUl.getElementsByTagName('li'),
+        oDiv = oBox.getElementsByTagName('div');
+
+    // 将选项卡（标题，内容）的class置空，然后将对应的id的选中
+    function changeTab(index) {
+        console.log(index);
+        for (var i = 0; i < oLi.length; i++) {
+            oLi[i].className = '';
+            oDiv[i].className = '';
+        }
+        oLi[index].className = 'active';
+        oDiv[index].className = 'active';
+    }
+
+    //利用闭包将i留住
+    // for (var i = 0; i < oLi.length; i++) {
+    //     (function (i) {
+    //         oLi[i].onclick = function () {
+    //
+    //         };
+    //     })(i);
+    // }
+    for (var i = 0; i < oLi.length; i++) {
+        oLi[i].onclick = (function (i) {
+            return function () {
+                changeTab(i);
+            }
+        })(i);
+    }
+
+    // let
+    // for (let i = 0; i < oLi.length; i++) {
+    //     oLi[i].onclick = function () {
+    //         changeTab(i);
+    //     };
+    // }
+
+
+    // 自定义属性
+    // for (var i = 0; i < oLi.length; i++) {
+    //     oLi[i]['index'] = i;
+    //     oLi[i].onclick = function () {
+    //         changeTab(this.index);
+    //     };
+    // }
+
+
+</script>
+</body>
+</html>
