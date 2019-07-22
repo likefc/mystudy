@@ -6,9 +6,9 @@ let utils = (function utils() {
      * @returns {string}： 返回的结果
      */
     let getCss = function (elem, attr) {
-        if ('getComputerStyle' in window) {
+        if ('getComputedStyle' in window) {
             let val = window.getComputedStyle(elem, null)[attr],
-                reg = /^-?\d+(\.\d+)?(rem|em|px|pt)$/g;
+                reg = /^-?\d+(\.\d+)?(rem|em|px|pt)?$/g;
             reg.test(val) ? val = parseFloat(val) : val;
             return val;
         }
@@ -21,13 +21,14 @@ let utils = (function utils() {
             elem.style.filter = `alpha(opacity=${value * 100})`;
         }
         if (!isNaN(value)) {
-            let reg = /(width|height|fontSize|(margin|padding)(Top|Bottom|Left|Right))/;
+            let reg = /^(width|height|fontSize|(margin|padding)?(top|bottom|left|right)?)$/i;
             reg.test(attr) ? value += 'px' : null;
         }
         elem.style[attr] = value;
     };
 
     let setGroupCss = function setGroupCss(elem, options = {}) {
+        console.log(options);
         for (let key in options) {
             if (options.hasOwnProperty(key)) {
                 setCss(elem, key, options[key]);
@@ -35,6 +36,7 @@ let utils = (function utils() {
         }
     };
     let css = function css(...arg) {
+
         let len = arg.length,
             fn = getCss;
         len >= 3 ? fn = setCss : null;
