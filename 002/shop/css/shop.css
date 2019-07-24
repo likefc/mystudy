@@ -1,0 +1,75 @@
+html,body{
+    width: 100%;
+    overflow-x: hidden;
+    background: #f4f4f4;
+    font-size: 14px;
+    color: #555;
+}
+
+.container{
+    margin: 20px auto;
+    width: 1200px;
+    overflow: hidden;
+}
+
+/*header*/
+.header{
+    background: #fff;
+}
+
+.header span{
+    float: left;
+    width: 90px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.header a{
+    float: left;
+    padding: 0 15px;
+    line-height: 50px;
+    text-align: center;
+    color: #999;
+}
+.header a:hover{
+    color: red;
+}
+
+/* list */
+.list{
+    width: 1205px;
+    margin-top: 20px;
+}
+
+.list li {
+    margin: 0 10px 10px 0;
+    float: left;
+}
+
+.list li a{
+    display: block;
+    padding:  0 16px;
+    width: 193px;
+    background: #fff;
+    border: 3px solid transparent;
+}
+.list li a img {
+    display: block;
+    width: 100%;
+}
+
+.list li a p {
+    height: 40px;
+    line-height: 20px;
+    color: #999;
+    overflow: hidden;
+}
+
+.list li a span {
+    line-height: 40px;
+    color: #555;
+}
+
+.list li a:hover {
+    border: 3px solid #E01D20;
+}
