@@ -3,8 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="./reset.min.css">
+    <style>
+        html, body {
+            height: 500%;
+        }
+
+        #link {
+            display: none;
+            position: fixed;
+            right: 20px;
+            bottom: 200px;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            background: rgba(0, 0, 0, .5);
+            font-size: 20px;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
-<a href="javascript:;">回到</a>
+<a href="javascript:;" id="link">回到底部</a>
+
+<script>
+    let toDo = (function () {
+        // 获取link
+        let link = document.querySelector('#link');
+
+
+        let isScroll = function () {
+            window.onscroll = function () {
+                let srollTop = document.documentElement.scrollTop,
+                    winH = document.documentElement.clientHeight;
+                link.style.display = srollTop > winH ? 'block' : 'none';
+            };
+        };
+        let isRun = false;
+        let isClick = function () {
+            link.onclick = function () {
+                if (isRun) return;
+                isRun = true;
+                let change = document.documentElement.scrollTop - 0,
+                    duration = 500,
+                    interval = 17,
+                    step = change / duration * interval;
+                let timer = setInterval(() => {
+                    let curT = document.documentElement.scrollTop;
+                    if (curT <= 0) {
+                        isRun = false;
+                        clearInterval(timer);
+                        return;
+                    }
+                    curT = curT - step;
+                    document.documentElement.scrollTop = curT;
+                }, interval);
+            };
+        };
+
+        return {
+            init: function () {
+                isScroll();
+                isClick();
+            }
+        }
+    })();
+    toDo.init();
+</script>
+
 </body>
 </html>
