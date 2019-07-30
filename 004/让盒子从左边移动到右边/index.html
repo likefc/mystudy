@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box" id="box"></div>
+<script src="jquery.js"></script>
+<script>
+    // let maxL = document.documentElement.clientWidth - box.offsetWidth,
+    //     minL = 0;
+
+
+    /* 固定匀速运动*/
+    /*let step = 5;
+    let timer = setInterval(() => {
+        let curL = box.offsetLeft;
+        curL += step;
+        if (curL >= maxL) {
+            box.style.left = maxL + 'px';
+            clearInterval(timer);
+            return;
+        }
+        box.style.left = curL + 'px';
+    }, 17);*/
+
+
+    /*
+    * 固定时间的匀速运动
+    * 1. 总时间
+    * 2. 频率
+    * 3. 总距离
+    * */
+
+   /* let allTimer = 10000,
+        interval = 17,
+        allDistance = maxL - minL,
+        step = allDistance * interval / allTimer;
+
+    let timer = setInterval(() => {
+        let curL = box.offsetLeft;
+        if (curL >= maxL) {
+            box.style.left = maxL + 'px';
+            clearInterval(timer);
+            return;
+        }
+        curL += step;
+        box.style.left = curL + 'px';
+    }, interval);*/
+
+
+   /*
+   * 规定时间内的多方向匀速运动
+   *  time当前运动时间
+   *  总时间
+   *  【记录每个方向的起始位置，目标值，总距离】
+   *  开始位置
+   *  目标位置
+   *  总距离
+   * */
+
+   let timer = 0,
+       allTimer = 10000;
+   let target = {
+       left : document.documentElement.clientLeft - box.offsetLeft,
+       top: document.documentElement.clientTop  - box.offsetTop,
+       width: 100,
+       height: 100,
+       fontSize : 30
+   };
+   
+</script>
+</body>
+</html>
